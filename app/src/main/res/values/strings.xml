@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Poliquit</string>
+    <string name="view_tally">View Tally</string>
+    <string name="start">Start</string>
+    <string name="username">Username</string>
+    <string name="about_the_developer">About the developer</string>
+</resources>
