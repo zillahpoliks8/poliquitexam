@@ -18,10 +18,13 @@ import static com.uic.prelimexam.poliquitexam.Bugtong.items;
 public class BugtongActivity extends AppCompatActivity {
 
     Button button_stop, button_A, button_B, button_C, button_D;
-    TextView textView_time, textView_currentUsername, textView_questions,textView_answered,textView_items;
+    TextView textView_time, textView_currentUsername, textView_questions,textView_answered,textView_items, textView_score;
     EditText editText_question;
     int items = Bugtong.items;
-    int intID;
+//    int intID;
+    MediaPlayer word;
+//  DatabaseHelper databaseHelper;
+//  String currentUsername;
 
 
     DatabaseHelper databaseHelper;
@@ -36,11 +39,16 @@ public class BugtongActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bugtong);
 
+        word = MediaPlayer.create(BugtongActivity.this,R.raw.background);
+        word.setLooping(true);
+        word.start();
+
         textView_time = (TextView) findViewById(com.uic.prelimexam.poliquitexam.R.id.textView_time);
         textView_currentUsername = (TextView) findViewById(com.uic.prelimexam.poliquitexam.R.id.textView_currentUsername);
 //        textView_questions = (TextView) findViewById(com.uic.prelimexam.poliquitexam.R.id.textView_questions);
 //        textView_answered = (TextView) findViewById(com.uic.prelimexam.poliquitexam.R.id.textView_answered);
 //        textView_items = (TextView) findViewById(com.uic.prelimexam.poliquitexam.R.id.txtView_items);
+        textView_score = (TextView) findViewById(R.id.textView_score);
         editText_question = (EditText) findViewById(com.uic.prelimexam.poliquitexam.R.id.editText_question);
         button_A = (Button) findViewById(com.uic.prelimexam.poliquitexam.R.id.button_A);
         button_B = (Button) findViewById(com.uic.prelimexam.poliquitexam.R.id.button_B);
@@ -55,22 +63,28 @@ public class BugtongActivity extends AppCompatActivity {
         currentUsername = uicGetSharedPreferenceValue("userInfo","username");
         textView_currentUsername.setText(currentUsername);
 
-        uicCountDown(textView_time, 180);
+//        uicCountDown(textView_time, 180);
+//        generateBugtong();
+//        Bugtong.SCORE = 50;
+        uicCountDown(textView_time, 251 );
         generateBugtong();
-//      Bugtong.SCORE = 50;
+        Bugtong.SCORE = 2;
+//        textView_items.setText(items+"of50");
 
-        button_stop = (Button) findViewById(com.uic.prelimexam.poliquitexam.R.id.button_stop);
+
+//        textView_items.setText(+items+"/50");
+//        textView_questions.setText("/50");
+//        textView_answered.setText(""+ Bugtong.answered++);
+
+
+        button_stop = (Button) findViewById(R.id.button_stop);
         button_stop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                --Bugtong.answered;
+                word.stop();
                 saveUserData();
             }
         });
-
-        textView_items.setText(items+"/50");
-        textView_questions.setText("/50");
-        textView_answered.setText(""+ Bugtong.answered++);
 
 
         button_A.setOnClickListener(new View.OnClickListener() {
@@ -110,6 +124,7 @@ public class BugtongActivity extends AppCompatActivity {
         button_C.setText(bugtong.getChoices(currentIndex,2));
         button_D.setText(bugtong.getChoices(currentIndex,3));
         if(currentIndex>=(bugtong.TOTAL_SIZE-1)){
+            word.stop();
             saveUserData();
         }else{
             Bugtong.questionShown++;
@@ -117,30 +132,35 @@ public class BugtongActivity extends AppCompatActivity {
     }
 
     public void checkUserAnswer(String choice){
-//        int currentIndex = TrollQuiz.questionShown;
-        int currentIndex = Bugtong.questionAnswered;
-        if(Bugtong.answer[currentIndex-1].equalsIgnoreCase(choice)){
-            MediaPlayer correct  = MediaPlayer.create(BugtongActivity.this,R.raw.correct);
+        int currentIndex = Bugtong.questionShown;
+        MediaPlayer correct  = MediaPlayer.create(BugtongActivity.this,R.raw.correct);
+        MediaPlayer incorrect  = MediaPlayer.create(BugtongActivity.this,R.raw.incorrect);
+        if(bugtong.answer[currentIndex-1].equalsIgnoreCase(choice)){
+            uicToastMessage("Correct!");
             correct.start();
             items++;
-            textView_items.setText(items+"/50");
+//            textView_items.setText(items+"of50");
             setAnswerCorrect();
-        }
+            generateBugtong();
 
-        else{
-            MediaPlayer incorrect  = MediaPlayer.create(BugtongActivity.this,R.raw.incorrect);
+        }else {
+            uicToastMessage("Incorrect!");
+            bugtong.SCORE -= 0;
             incorrect.start();
             items++;
-            textView_items.setText(items+"/50");
+//            textView_items.setText(items+"of50");
             generateBugtong();
+
         }
-        //        textView_score.setText(TrollQuiz.SCORE+"");
+
+
+        textView_score.setText(Bugtong.SCORE+"");
     }
 
     public void setAnswerCorrect(){
-        uicToastMessage("Correct!");
-        Bugtong.SCORE += (10 * (int) remainingSeconds);
+        Bugtong.SCORE += (2 * 2);
         generateBugtong();
+
     }
 
     public void saveUserData(){
@@ -159,7 +179,7 @@ public class BugtongActivity extends AppCompatActivity {
 
             public void onTick(long millisUntilFinished) {
                 remainingSeconds = (millisUntilFinished / 1000);
-                textView.setText(""+remainingSeconds);
+                textView.setText(":"+remainingSeconds);
             }
 
             public void onFinish() {

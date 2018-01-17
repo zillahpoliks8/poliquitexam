@@ -20,9 +20,9 @@ import com.google.android.gms.ads.MobileAds;
 
 public class MainActivity extends AppCompatActivity {
 
-    AdView mAdview;
+//    AdView mAdview;
     EditText editText_username;
-    Button button_start, button_tally;
+    Button button_start, button_tally, button_About;
 
 
     @Override
@@ -33,11 +33,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         /*AD STARTS HERE********/
-        MobileAds.initialize(this, "ca-app-pub-3940256099942544~3347511713");
-
-        mAdview = (AdView)findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR).build();
-        mAdview.loadAd(adRequest);
+//        MobileAds.initialize(this, "ca-app-pub-3940256099942544~3347511713");
+//
+//        mAdview = (AdView)findViewById(R.id.adView);
+//        AdRequest adRequest = new AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR).build();
+//        mAdview.loadAd(adRequest);
 
         /*BUGTONG STARTS HERE********/
         editText_username = (EditText) findViewById(R.id.editText_username);
@@ -46,15 +46,21 @@ public class MainActivity extends AppCompatActivity {
         button_About = (Button) findViewById(R.id.button_About);
 
         if(uicGetSharedPreferenceValue("userInfo", "username").isEmpty()){
-            button_tally.setEnabled(true);
+            button_tally.setEnabled(false);
         }
 
         button_start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                uicSetSharedPreferenceValue("userInfo", "username", editText_username.getText().toString());
-                Intent intent = new Intent(MainActivity.this,BugtongActivity.class);
-                startActivity(intent);
+
+                String username = editText_username.toString();
+                if(editText_username.getText().length()<2){
+                    uicToastMessage("Invalid Username");
+
+                }else{
+                    uicSetSharedPreferenceValue("userInfo", "username", editText_username.getText().toString());
+                    Intent intent = new Intent(MainActivity.this,BugtongActivity.class);
+                    startActivity(intent);}
             }
         });
 

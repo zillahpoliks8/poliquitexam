@@ -6,6 +6,10 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+/**
+ * Created by user on 03/01/2018.
+ */
+
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String TABLE_NAME = "bugtong_tally_table";
     private static final String COL1 = "ID";
@@ -27,6 +31,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
         onCreate(db);
+    }
+
+    public void deleteScores(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String deleteData ="DELETE FROM " + TABLE_NAME;
+        db.execSQL(deleteData);
     }
 
     public boolean addData(String username, int score){
