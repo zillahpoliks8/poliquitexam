@@ -4,4 +4,8 @@
     <string name="start">Start</string>
     <string name="username">Username</string>
     <string name="about_the_developer">About the developer</string>
+    <string name="button_about">button_About</string>
+    <string name="change_username">change username</string>
+    <string name="play_again">PLAY AGAIN</string>
+    <string name="ching">CHING</string>
 </resources>

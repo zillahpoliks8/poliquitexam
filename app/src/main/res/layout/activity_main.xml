@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.uic.prelimexam.poliquitexam.MainActivity"
-    android:background="@color/colorPrimaryDark">
+    android:background="@drawable/unicorn">
 
     <EditText
         android:id="@+id/editText_username"
@@ -14,14 +14,16 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="140dp"
+        android:layout_marginTop="300dp"
+        android:backgroundTint="#70FF0000"
         android:ems="10"
         android:hint="@string/username"
         android:inputType="textPersonName"
+        android:textColor="#ffffff"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/button_About" />
 
     <Button
         android:id="@+id/button_start"
@@ -47,18 +49,22 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText_username" />
+        app:layout_constraintTop_toBottomOf="@+id/editText_username"
+        android:backgroundTint="#70FF0000"/>
 
-    <Button
+    <ImageButton
         android:id="@+id/button_About"
-        android:layout_width="208dp"
+        android:layout_width="51dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
-        android:text="@string/about_the_developer"
+        android:backgroundTint="#70FF0000"
+        android:contentDescription="@string/button_about"
+        android:src="@drawable/ic_person_black_24dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.974"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_tally" />
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="16dp" />
 
 </android.support.constraint.ConstraintLayout>

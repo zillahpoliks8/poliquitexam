@@ -25,21 +25,21 @@ public class Bugtong {
         answer = new String [MAX_SIZE];
 
         bugtong[0] = "Isang balong malalim, punong-puno ng patalim.";
-        choices[0][0] = "Bibig";
-        choices[0][1] = "Ilong";
+        choices[0][0] = "Paruparo";
+        choices[0][1] = "Bibig";
         choices[0][2] = "Tainga";
         choices[0][3] = "Mata";
         answer[0] = "A";
 
         bugtong[1] = "Dalawang batong maitim, malayo ang dinarating.";
-        choices[1][0] = "Bibig";
+        choices[1][0] = "Paruparo";
         choices[1][1] = "Ilong";
         choices[1][2] = "Tainga";
         choices[1][3] = "Mata";
         answer[1] = "D";
 
         bugtong[2] = "Dalawang balon, hindi malingon.";
-        choices[2][0] = "Bibig";
+        choices[2][0] = "Paruparo";
         choices[2][1] = "Ilong";
         choices[2][2] = "Tainga";
         choices[2][3] = "Mata";
@@ -66,7 +66,7 @@ public class Bugtong {
         choices[5][3] = "Langaw";
         answer[5] = "A";
 
-        bugtong[1] = "Buto’t balat lumilipad.";
+        bugtong[6] = "Buto’t balat lumilipad.";
         choices[6][0] = "Buto";
         choices[6][1] = "Papel";
         choices[6][2] = "Lapis";
@@ -181,7 +181,7 @@ public class Bugtong {
         bugtong[22] = "Heto na si Kaka, bubuka-bukaka.";
         choices[22][0] = "Aso";
         choices[22][1] = "Pusa";
-        choices[22][2] = "Palakaa";
+        choices[22][2] = "Palaka";
         choices[22][3] = "Langgam";
         answer[22] = "C";
 
@@ -374,6 +374,7 @@ public class Bugtong {
         choices[49][3] = "Kabute";
         answer[49] = "B";
     }
+
     public String getBugtong(int index){
         return bugtong[index];
     }

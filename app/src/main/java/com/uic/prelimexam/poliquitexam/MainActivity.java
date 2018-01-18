@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.google.android.gms.ads.AdRequest;
@@ -22,7 +23,8 @@ public class MainActivity extends AppCompatActivity {
 
 //    AdView mAdview;
     EditText editText_username;
-    Button button_start, button_tally, button_About;
+    Button button_start, button_tally;
+    ImageButton button_About;
 
 
     @Override
@@ -43,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         editText_username = (EditText) findViewById(R.id.editText_username);
         button_start = (Button) findViewById(R.id.button_start);
         button_tally = (Button) findViewById(R.id.button_tally);
-        button_About = (Button) findViewById(R.id.button_About);
+        button_About = (ImageButton) findViewById(R.id.button_About);
 
         if(uicGetSharedPreferenceValue("userInfo", "username").isEmpty()){
             button_tally.setEnabled(false);
