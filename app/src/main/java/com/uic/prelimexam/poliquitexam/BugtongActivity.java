@@ -179,7 +179,7 @@ public class BugtongActivity extends AppCompatActivity {
 
             public void onTick(long millisUntilFinished) {
                 remainingSeconds = (millisUntilFinished / 1000);
-                textView.setText(":"+remainingSeconds);
+                textView.setText(""+remainingSeconds);
             }
 
             public void onFinish() {

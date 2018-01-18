@@ -29,7 +29,7 @@ public class Bugtong {
         choices[0][1] = "Bibig";
         choices[0][2] = "Tainga";
         choices[0][3] = "Mata";
-        answer[0] = "A";
+        answer[0] = "B";
 
         bugtong[1] = "Dalawang batong maitim, malayo ang dinarating.";
         choices[1][0] = "Paruparo";
@@ -59,7 +59,7 @@ public class Bugtong {
         choices[4][3] = "Daliri";
         answer[4] = "D";
 
-        bugtong[0] = "Hindi pari, hindi hari, nagdadamit ng sari-sari.";
+        bugtong[5] = "Hindi pari, hindi hari, nagdadamit ng sari-sari.";
         choices[5][0] = "Paruparo";
         choices[5][1] = "Ibon";
         choices[5][2] = "Agila";

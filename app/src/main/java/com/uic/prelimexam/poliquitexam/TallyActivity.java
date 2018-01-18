@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 public class TallyActivity extends AppCompatActivity {
 
-    Button button_playAgain, button_changeUsername;
+    Button button_playAgain, button_changeUsername, button_clear;
     ListView listView_tally;
 
     DatabaseHelper databaseHelper;
@@ -28,6 +28,7 @@ public class TallyActivity extends AppCompatActivity {
 
         button_playAgain = (Button) findViewById(R.id.button_playagain);
         button_changeUsername = (Button) findViewById(R.id.button_changeusername);
+        button_clear =(Button) findViewById(R.id.button_clear);
 
         listView_tally = (ListView) findViewById(R.id.listView_tally);
         databaseHelper = new DatabaseHelper(this);
@@ -52,13 +53,21 @@ public class TallyActivity extends AppCompatActivity {
                 startActivity(new Intent(TallyActivity.this, MainActivity.class));
             }
         });
+
+        button_clear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                databaseHelper.deleteScores();
+                startActivity(new Intent(TallyActivity.this,TallyActivity.class));
+            }
+        });
     }
 
-    public void populateListView(){
+    public void populateListView() {
         Cursor data = databaseHelper.getData();
         ArrayList<String> listData = new ArrayList<>();
-        while(data.moveToNext()){
-            listData.add(data.getString(2) + " - " + data.getString(1));
+        while (data.moveToNext()) {
+            listData.add("   "+data.getString(1) + "       " + data.getString(2));
         }
 
         ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listData);
