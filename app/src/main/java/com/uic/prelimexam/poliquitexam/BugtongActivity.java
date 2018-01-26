@@ -133,11 +133,11 @@ public class BugtongActivity extends AppCompatActivity {
 
     public void checkUserAnswer(String choice){
         int currentIndex = Bugtong.questionShown;
-        MediaPlayer correct  = MediaPlayer.create(BugtongActivity.this,R.raw.correct);
-        MediaPlayer incorrect  = MediaPlayer.create(BugtongActivity.this,R.raw.incorrect);
+//        MediaPlayer correct  = MediaPlayer.create(BugtongActivity.this,R.raw.correct);
+//        MediaPlayer incorrect  = MediaPlayer.create(BugtongActivity.this,R.raw.incorrect);
         if(bugtong.answer[currentIndex-1].equalsIgnoreCase(choice)){
             uicToastMessage("Correct!");
-            correct.start();
+//            correct.start();
             items++;
 //            textView_items.setText(items+"of50");
             setAnswerCorrect();
@@ -146,7 +146,7 @@ public class BugtongActivity extends AppCompatActivity {
         }else {
             uicToastMessage("Incorrect!");
             bugtong.SCORE -= 0;
-            incorrect.start();
+//            incorrect.start();
             items++;
 //            textView_items.setText(items+"of50");
             generateBugtong();
